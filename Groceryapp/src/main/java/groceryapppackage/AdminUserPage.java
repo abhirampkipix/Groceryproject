@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import utilities.PageUtilities;
+
 public class AdminUserPage {
 	WebDriver driver;
 	public AdminUserPage(WebDriver driver) {     
@@ -47,10 +49,14 @@ public class AdminUserPage {
     public void enteradminPassword(String inputpassword) {
 		adminPassword.sendKeys(inputpassword);	 
 	}
-	public void selectUserType(String userType) {
-		Select dropdown=new Select(usertype);
-		dropdown.selectByVisibleText(userType);
-	}
+//	public void selectUserType(String userType) {
+//		Select dropdown=new Select(usertype);
+//		dropdown.selectByVisibleText(userType);
+//	}
+    public void selectUserType(String userType) {
+    	PageUtilities dropselect=new PageUtilities();
+    	dropselect.selectText(usertype);
+    }
 	public void userSave() {
 		adminsave.click();
 	}
