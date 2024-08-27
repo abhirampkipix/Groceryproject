@@ -16,7 +16,7 @@ public class ManageFooterPage {
 	@FindBy(xpath="//input[@name='password']")WebElement passwordpsd;
 	@FindBy(xpath="//button[@type='submit']")WebElement signinbutton;
 	
-	@FindBy(xpath="(//a[@class='small-box-footer'])[12]")WebElement manage_footer;
+	@FindBy(xpath="(//a[@class='small-box-footer'])[10]")WebElement manage_footer;
 	@FindBy(xpath="(//a[@class='btn btn-sm btn btn-primary btncss'])[1]")WebElement editfootercontent;
 	@FindBy(xpath="(//textarea[@name='address'])[1]")WebElement editaddress;
 	@FindBy(xpath="//input[@name='email']")WebElement editemail;
