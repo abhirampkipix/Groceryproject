@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-	<parameter name="Username" value="admin"></parameter>
-	<parameter name="Password" value="admin"></parameter>
-	<test thread-count="5" name="Groceryxml">
+	<parameter name="username" value="admin@123">
+	</parameter>
+	<parameter name="password" value="admin">
+	</parameter>
+	<test thread-count="5" name="parameter">
 		<classes>
-			<class name="testscript.LoginFormTest">
+			<class name="testscripts.LoginPageTest">
 				<methods>
-					<include name="inavlidPasswordValidusername">
+					<include name="Enter Values">
 					</include>
-
 				</methods>
-
-
 			</class>
-
 		</classes>
-	</test>
+	</test> <!--
+	7rmartLiveProjectTest -->
 </suite> <!--
 Suite -->
