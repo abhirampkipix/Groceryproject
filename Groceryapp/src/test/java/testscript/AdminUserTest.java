@@ -12,7 +12,7 @@ import groceryapppackage.LoginForm;
 import utilities.ExcelUpload;
 
 public class AdminUserTest extends Base {
-  @Test(priority=1)
+  @Test(priority=1,retryAnalyzer = retry.Retry.class)
 	public void adminLogin() throws IOException {
 //		  String userNameField="admin";
 //		  String passwordfield="admin";
