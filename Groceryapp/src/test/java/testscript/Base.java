@@ -2,13 +2,17 @@ package testscript;
 
 import org.testng.annotations.Test;
 
+import constants.Constants;
 import utilities.ScreenshotUtility;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,14 +22,25 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 
 public class Base {
-	WebDriver driver;	
-	ScreenshotUtility scrshot;
+    public WebDriver driver;	
+	public Properties properties;
+	public FileInputStream fis;
+	public ScreenshotUtility scrshot;
   
   
   
-  @BeforeMethod
+  @BeforeMethod(alwaysRun = true)
   @Parameters("Browser")
-  public void initialiseMethod(@Optional("chrome")String browser) throws Exception {
+  public void initialiseMethod(@Optional("chrome")String browser) throws Exception {   //
+	  try {
+			properties = new Properties();
+			fis = new FileInputStream(Constants.CONFIGFILE);
+			properties.load(fis);
+
+		} catch (FileNotFoundException exception) {
+			exception.printStackTrace();
+		}
+	
 	  if (browser.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver();
 		} else if (browser.equalsIgnoreCase("edge")) {
@@ -36,18 +51,22 @@ public class Base {
 			throw new Exception("invalid browser");
 		}
 	  //driver=new	ChromeDriver();
-	  driver.navigate().to("https://groceryapp.uniqassosiates.com/admin/login");
+	//driver.navigate().to("https://groceryapp.uniqassosiates.com/admin/login");
+	 driver.get(properties.getProperty("url"));
+	  
 	  driver.manage().window().maximize();
   }
+  
 
   @AfterMethod
 	  public void browserQuit(ITestResult itestresult) throws IOException {
 			if (itestresult.getStatus() == ITestResult.FAILURE) {
 				scrshot = new ScreenshotUtility();
 				scrshot.captureFailureScreenShot(driver, itestresult.getName());
-				driver.quit();
 
 			}
+			driver.quit();
+
   }
 }
 

@@ -22,7 +22,7 @@ public class LoginFormTest extends Base {
 		input[1][1] = "admin123";
 		return input;
 	}	
-  @Test(priority=4,dataProvider="credentials",retryAnalyzer = retry.Retry.class)
+  @Test(priority=4,dataProvider="credentials",retryAnalyzer = retry.Retry.class,groups=("smoke"))
    public void actualusernameandpassword(String userNameField,String passwordfield) throws IOException {
 //	  String userNameField="admin";
 //	  String passwordfield="admin";
